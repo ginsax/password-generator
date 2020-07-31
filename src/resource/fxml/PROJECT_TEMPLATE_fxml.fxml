@@ -1,9 +1,0 @@
-<?import PROJECT_TEMPLATE_fxml?>
-
-<fx:root type="PROJECT_TEMPLATE_fxml" xmlns:fx="http://javafx.com/fxml"
-	id="PROJECT-TEMPLATE-fxml">
-	<!-- Constants -->
-	<fx:define>
-	</fx:define>
-	
-</fx:root>

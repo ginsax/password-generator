@@ -1,20 +1,80 @@
-<?import java.lang.Double?>
-
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
 
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import app.PROJECT_TEMPLATE_controller?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.geometry.Insets?>
 
-<fx:root type="PROJECT_TEMPLATE_controller" xmlns:fx="http://javafx.com/fxml"
-	id="controller" prefWidth="300">
-	<!-- Constants -->
-	<fx:define>
-	</fx:define>
-	
-	<VBox id="controller-container" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
-		AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-			
+
+<fx:root type="AnchorPane" xmlns:fx="http://javafx.com/fxml">
+	<!-- CONSTANTS -->
+
+	<VBox AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+		AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" spacing="5.0"
+		alignment="CENTER_LEFT">
+		<!-- Controls -->
+		<VBox spacing="5.0" alignment="CENTER_LEFT">
+			<CheckBox fx:id="mCheckbox_Uppercase" text="Uppercase"
+				selected="true" />
+			<CheckBox fx:id="mCheckbox_Digits" text="Digits"
+				selected="true" />
+			<CheckBox fx:id="mCheckbox_SpecialCharacters"
+				text="Special Characters" selected="true" />
+			<CheckBox fx:id="mCheckbox_CustomCharacters"
+				text="Custom Characters" />
+
+			<!-- Custom characters -->
+			<VBox visible="${ mCheckbox_CustomCharacters.selected }">
+				<TextFlow>
+					<Text text="Custom characters" style="fx-font-style: italic;">
+						<font>
+							<Font name="Times New Roman" size="12" />
+						</font>
+					</Text>
+				</TextFlow>
+				<TextField fx:id="mInput_CustomCharacters" />
+			</VBox>
+
+			<Slider fx:id="mPasswordLengthSlider" min="8" max="32"
+				value="20" majorTickUnit="6" minorTickCount="5" snapToTicks="true"
+				showTickLabels="true" showTickMarks="true" />
+
+			<!-- Generated password -->
+			<VBox>
+				<TextFlow>
+					<Text text="Generated password" style="fx-font-style: italic;">
+						<font>
+							<Font name="Times New Roman" size="12" />
+						</font>
+					</Text>
+				</TextFlow>
+				<TextField fx:id="mOutput_GeneratedPassword"
+					disable="true" />
+			</VBox>
+
+			<padding>
+				<Insets top="5.0" bottom="5.0" left="5.0" right="5.0" />
+			</padding>
+		</VBox>
+
+		<!-- Buttons -->
+		<ButtonBar>
+			<buttons>
+				<Button text="Generate" onAction="#generatePassword" />
+				<Button text="Copy to Clipboard" onAction="#copyToClipboard" />
+			</buttons>
+		</ButtonBar>
+
+		<padding>
+			<Insets top="5.0" bottom="5.0" left="5.0" right="5.0" />
+		</padding>
 	</VBox>
+
 </fx:root>
