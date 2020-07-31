@@ -1,0 +1,47 @@
+Coding Standards
+Jacob Watson
+08.01.2019
+
+Formatting
+- Must use Allman style for curly brace placement.
+- Must use spaces to indent, not tabs.
+- Must use 2 spaces per level of indenting.
+- Avoid exceeding 100 characters per line, including spaces.
+- Place method parameters on the same column.
+- Must use a single space on each side of binary operators.
+- Must use a single space between the keyword for a control block and its 
+condition.
+
+
+Naming Conventions
+- Do not use abbreviations.
+- Branch names must be Kebab case and use the following pattern: 
+<first_name><last_initial>-<bug/issue_number>-<description>-<separated>-<by>-<dashes>
+jacobw-002-define-coding-standards
+- Class names are Pascal case. Examples:
+MyClassName, MyOtherMethodName
+- Method names are Camel case. Examples:
+myMethodName, myOtherMethodName
+- Member names are Camel case, beginning with the 'm' prefix. Examples:
+mUsername, mNumberOfExamples
+
+- Abstract class names must begin with the 'A_' prefix. Examples:
+A_Person, A_Animal
+- Interface names must begin with the 'I_' prefix. Examples:
+I_InitializeLater, I_Interactable
+- Exception class names must end with the 'Exception' suffix. Examples:
+NotImplementedException, FXMLFileLoaderException
+
+
+
+Documentation
+- Classes - regardless of visibility - must have a fully documented header, 
+with the description of the class, who created it, and the date it was last 
+updated. In general, when it is updated, update the last updated date.
+
+- Methods - regardless of visibility - must have a fully documented header, 
+with the description of the method, the parameters passed in, any exceptions 
+that are thrown, and the returned value (if any). In general, when it is 
+updated, update the last updated date.
+
+- Members do not strictly need to be updated.

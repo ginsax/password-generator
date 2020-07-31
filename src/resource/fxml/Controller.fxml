@@ -1,0 +1,20 @@
+<?import java.lang.Double?>
+
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import app.PROJECT_TEMPLATE_controller?>
+
+<fx:root type="PROJECT_TEMPLATE_controller" xmlns:fx="http://javafx.com/fxml"
+	id="controller" prefWidth="300">
+	<!-- Constants -->
+	<fx:define>
+	</fx:define>
+	
+	<VBox id="controller-container" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+		AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+			
+	</VBox>
+</fx:root>
