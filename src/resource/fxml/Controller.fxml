@@ -59,9 +59,19 @@
 					disable="true" />
 			</VBox>
 
+			<!-- User Friendly View -->
+			<VBox>
+				<TextFlow fx:id="mTextFlow_UserFriendly">
+					<Text text="Click '" />
+					<Text text="Generate" id="font-italic" />
+					<Text text="' to see a phonetic pronunciation of your password!" />
+				</TextFlow>
+			</VBox>
+
 			<padding>
 				<Insets top="5.0" bottom="5.0" left="5.0" right="5.0" />
 			</padding>
+
 		</VBox>
 
 		<!-- Buttons -->

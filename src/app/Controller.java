@@ -3,16 +3,22 @@ package app;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
+import java.util.regex.Pattern;
 
-import fxml.FXMLFileException;
+import common.Constants;
+import common.alphabet.Alphabet;
+import exception.FXMLFileException;
 import fxml.FXMLFileLoader;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 class Controller extends AnchorPane {
 	
@@ -29,6 +35,9 @@ class Controller extends AnchorPane {
 	private TextField	mInput_CustomCharacters;
 	@FXML
 	private TextField	mOutput_GeneratedPassword;
+	
+	@FXML
+	private TextFlow mTextFlow_UserFriendly;
 	
 	@FXML
 	private Slider mPasswordLengthSlider;
@@ -48,6 +57,7 @@ class Controller extends AnchorPane {
 	
 	@FXML
 	private void generatePassword() {
+		// These are default characters
 		final String chars_Lowercase = "abcdefghijklmnopqrstuvwxyz";
 		
 		final StringBuilder availableCharactersBuilder = new StringBuilder();
@@ -69,7 +79,7 @@ class Controller extends AnchorPane {
 		
 		// Add special characters, if selected
 		if (mCheckbox_SpecialCharacters.isSelected()) {
-			final String chars_Special = "_.-!@*$?&%";
+			final String chars_Special = "!$%&*-.?@_";
 			
 			availableCharactersBuilder.append(chars_Special);
 		}
@@ -105,7 +115,41 @@ class Controller extends AnchorPane {
 			passwordBuilder.append(nextCharacter);
 		}
 		
-		mOutput_GeneratedPassword.setText(passwordBuilder.toString());
+		final String password = passwordBuilder.toString();
+		
+		mOutput_GeneratedPassword.setText(password);
+		
+		setPhoneticPassword(password);
+		
+	}
+	
+	private void setPhoneticPassword(final String password) {
+		mTextFlow_UserFriendly.getChildren().clear();
+		
+		final String delimiter = "-";
+		final String phoneticPassword = Alphabet.toPhoneticString(password,
+		                                                          delimiter);
+		
+		final String[] phoneticPasswordComponents = phoneticPassword.split(Pattern.quote(delimiter));
+		
+		for (int i = 0; i < phoneticPasswordComponents.length; ++i) {
+			final Text text = new Text(phoneticPasswordComponents[i].toLowerCase());
+			text.setId("font-italic");
+			
+			// If character is uppercase
+			final String characterAtIndex = new String(password.charAt(i) + Constants.NullString);
+			if (!Objects.equals(characterAtIndex,
+			                    characterAtIndex.toLowerCase())) {
+				text.setText(text.getText().toUpperCase());
+			}
+			
+			mTextFlow_UserFriendly.getChildren().add(text);
+			
+			if (i < phoneticPasswordComponents.length - 1) {
+				mTextFlow_UserFriendly.getChildren().add(new Text(delimiter));
+			}
+		}
+		
 	}
 	
 	@FXML

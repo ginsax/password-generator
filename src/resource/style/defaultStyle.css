@@ -1,7 +1,27 @@
+* {
+	
+	-fx-font-family: "Times New Roman";
+}
+
 #controller {
-	-fx-padding: 5px;
+	-fx-padding: 5.0px;
 }
 
 #controller-container {
-	-fx-padding: 5px;
+	-fx-padding: 5.0px;
+}
+
+#font-bold {
+	-fx-font-weight: bold;
+}
+#font-italic {
+	-fx-font-style: italic;
+}
+#font-italic-underline {
+	-fx-font-style: italic;
+	-fx-underline: true;
+}
+#font-bold-italic {
+	-fx-font-weight: bold;
+	-fx-font-style: italic;
 }
