@@ -61,10 +61,11 @@
 
 			<!-- User Friendly View -->
 			<VBox>
-				<TextFlow fx:id="mTextFlow_UserFriendly">
+				<TextFlow fx:id="mTextFlow_Phonetic">
 					<Text text="Click '" />
 					<Text text="Generate" id="font-italic" />
-					<Text text="' to see a phonetic pronunciation of your password!" />
+					<Text
+						text="' to see a phonetic pronunciation of your password!" />
 				</TextFlow>
 			</VBox>
 

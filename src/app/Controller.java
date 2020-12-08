@@ -12,6 +12,10 @@ import common.Constants;
 import common.alphabet.Alphabet;
 import exception.FXMLFileException;
 import fxml.FXMLFileLoader;
+import javafx.animation.Animation;
+import javafx.animation.PauseTransition;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
@@ -19,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.util.Duration;
 
 class Controller extends AnchorPane {
 	
@@ -37,7 +42,7 @@ class Controller extends AnchorPane {
 	private TextField	mOutput_GeneratedPassword;
 	
 	@FXML
-	private TextFlow mTextFlow_UserFriendly;
+	private TextFlow mTextFlow_Phonetic;
 	
 	@FXML
 	private Slider mPasswordLengthSlider;
@@ -53,6 +58,10 @@ class Controller extends AnchorPane {
 			e.printStackTrace();
 			System.err.println(e.getStackTrace());
 		}
+		
+		mTextFlow_Phonetic.getChildren().addAll(new Text(System.lineSeparator()),
+		                                        new Text(System.lineSeparator()),
+		                                        new Text(System.lineSeparator()));
 	}
 	
 	@FXML
@@ -120,11 +129,10 @@ class Controller extends AnchorPane {
 		mOutput_GeneratedPassword.setText(password);
 		
 		setPhoneticPassword(password);
-		
 	}
 	
 	private void setPhoneticPassword(final String password) {
-		mTextFlow_UserFriendly.getChildren().clear();
+		mTextFlow_Phonetic.getChildren().clear();
 		
 		final String delimiter = "-";
 		final String phoneticPassword = Alphabet.toPhoneticString(password,
@@ -143,12 +151,38 @@ class Controller extends AnchorPane {
 				text.setText(text.getText().toUpperCase());
 			}
 			
-			mTextFlow_UserFriendly.getChildren().add(text);
+			mTextFlow_Phonetic.getChildren().add(text);
 			
 			if (i < phoneticPasswordComponents.length - 1) {
-				mTextFlow_UserFriendly.getChildren().add(new Text(delimiter));
+				mTextFlow_Phonetic.getChildren().add(new Text(delimiter));
 			}
 		}
+		
+		adjustTextFlowHeight();
+	}
+	
+	private void adjustTextFlowHeight() {
+		final DoubleProperty phoneticHeight = new SimpleDoubleProperty();
+		
+		phoneticHeight.set(mTextFlow_Phonetic.getParent().getLayoutBounds().getHeight());
+		
+		final PauseTransition pauseTransition = new PauseTransition(Duration.millis(1));
+		
+		pauseTransition.setOnFinished(e -> {
+			mTextFlow_Phonetic.getChildren().add(new Text(System.lineSeparator()));
+			
+			phoneticHeight.set(mTextFlow_Phonetic.getParent().getLayoutBounds().getHeight());
+			
+			if (phoneticHeight.get() <= 45.0) {
+				pauseTransition.play();
+			}
+			
+			if (phoneticHeight.get() > 45.0 ) {
+				mTextFlow_Phonetic.getChildren().remove(mTextFlow_Phonetic.getChildren().size() - 1);
+			}
+		});
+		
+		pauseTransition.play();
 		
 	}
 	
