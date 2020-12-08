@@ -12,7 +12,6 @@ import common.Constants;
 import common.alphabet.Alphabet;
 import exception.FXMLFileException;
 import fxml.FXMLFileLoader;
-import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
