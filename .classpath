@@ -5,9 +5,9 @@
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="lib" path="dependencies/WatsonUtilities.jar">
+	<classpathentry kind="lib" path="submodules/WatsonUtilitiesLibrary/WatsonUtilities.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/password-generator/dependencies/WatsonUtilities_javadoc.zip!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/password-generator/submodules/WatsonUtilitiesLibrary/WatsonUtilities_javadoc.zip!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>

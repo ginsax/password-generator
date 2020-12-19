@@ -1,0 +1,3 @@
+[submodule "submodules/WatsonUtilitiesLibrary"]
+	path = submodules/WatsonUtilitiesLibrary
+	url = https://github.com/ginsax/WatsonUtilitiesLibrary.git
